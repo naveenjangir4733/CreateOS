@@ -1,33 +1,14 @@
-'use client';
-
-import * as React from 'react';
 import {
   AudioWaveform,
-  BookOpen,
   Bot,
   Command,
   Frame,
-  GalleryVerticalEnd,
-  Map,
   PieChart,
   Settings2,
   SquareTerminal,
 } from 'lucide-react';
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from '@/components/ui/sidebar';
-import { TeamSwitcher } from './TeamSwitcher';
-import { NavMain } from './NavMain';
-import { NavProjects } from './NavProjects';
-import { NavUser } from './NavUser';
-
-// This is sample data.
-const createOSData = {
+export const createOSData = {
   user: {
     name: 'Naveen Jangir',
     email: 'naveenjangir4733@gmail.com',
@@ -124,21 +105,3 @@ const createOSData = {
     },
   ],
 };
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={createOSData.teams} />
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={createOSData.navMain} />
-        <NavProjects projects={createOSData.projects} />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={createOSData.user} />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
-  );
-}

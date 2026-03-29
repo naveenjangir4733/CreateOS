@@ -1,6 +1,6 @@
 import App from '@/App';
-import DashboardPage from '@/pages/DashboardPage';
-import HomePage from '@/pages/HomePage';
+import { HomePage } from '@/features/home';
+import { DashboardPage } from '@/features/dashboard';
 import { createBrowserRouter } from 'react-router';
 
 const router = createBrowserRouter([
