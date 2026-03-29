@@ -28,7 +28,8 @@ export function NavMain({
     items?: { title: string; url: string }[];
   }[];
 }) {
-  const { activeTab, setActiveTab } = useActiveTab();
+  const { activeTab, setActiveTab, activeSubTab, setActiveSubTab } =
+    useActiveTab();
 
   return (
     <SidebarGroup>
@@ -65,14 +66,18 @@ export function NavMain({
                       <SidebarMenuSubItem key={subItem.title}>
                         <SidebarMenuSubButton
                           asChild
-                          onClick={() => setActiveTab(subItem.title)}
-                          className={`px-4 py-2 block cursor-pointer ${
-                            activeTab === subItem.title
-                              ? 'bg-blue-400 text-white'
-                              : 'hover:bg-gray-100'
-                          }`}
+                          onClick={() => setActiveSubTab(subItem.title)}
+                          className={`px-4 py-2 block cursor-pointer relative `}
                         >
-                          <a href={subItem.url}>{subItem.title}</a>
+                          <a
+                            href={subItem.url}
+                            className="flex items-center space-x-2"
+                          >
+                            {activeSubTab === subItem.title && (
+                              <span className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2 h-2 border-2 border-amber-300 rounded-full" />
+                            )}
+                            <span>{subItem.title}</span>
+                          </a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}

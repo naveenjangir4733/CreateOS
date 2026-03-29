@@ -8,7 +8,9 @@ import {
 
 interface ActiveTabContextType {
   activeTab: string;
+  activeSubTab: string;
   setActiveTab: (tab: string) => void;
+  setActiveSubTab: (subTab: string) => void;
 }
 
 const ActiveTabContext = createContext<ActiveTabContextType | undefined>(
@@ -16,13 +18,22 @@ const ActiveTabContext = createContext<ActiveTabContextType | undefined>(
 );
 
 export const ActiveTabProvider = ({ children }: { children: ReactNode }) => {
-  const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const [activeTab, setActiveTab] = useState<string>(() => {
+    return localStorage.getItem('activeTab') || 'Dashboard';
+  });
+  const [activeSubTab, setActiveSubTab] = useState<string>(() => {
+    return localStorage.getItem('activeSubTab') || 'Overview';
+  });
+
   useEffect(() => {
-    console.log('ActiveTab changed:', activeTab);
-  }, [activeTab]);
+    localStorage.setItem('activeTab', activeTab);
+    localStorage.setItem('activeSubTab', activeSubTab);
+  }, [activeTab, activeSubTab]);
 
   return (
-    <ActiveTabContext.Provider value={{ activeTab, setActiveTab }}>
+    <ActiveTabContext.Provider
+      value={{ activeTab, setActiveTab, activeSubTab, setActiveSubTab }}
+    >
       {children}
     </ActiveTabContext.Provider>
   );
