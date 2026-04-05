@@ -1,14 +1,14 @@
 import { Outlet } from 'react-router';
 import Layout from './components/layout/Layout';
-import { ActiveTabProvider } from './context';
+import { AppProviders } from './context/AppProviders';
 
 function App() {
   return (
-    <ActiveTabProvider>
+    <AppProviders>
       <Layout>
         <Outlet />
       </Layout>
-    </ActiveTabProvider>
+    </AppProviders>
   );
 }
 
