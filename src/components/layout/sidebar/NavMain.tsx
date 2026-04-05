@@ -1,6 +1,7 @@
 'use client';
 
 import { ChevronRight, type LucideIcon } from 'lucide-react';
+import { NavLink, useLocation } from 'react-router';
 import {
   Collapsible,
   CollapsibleContent,
@@ -30,6 +31,7 @@ export function NavMain({
 }) {
   const { activeTab, setActiveTab, activeSubTab, setActiveSubTab } =
     useActiveTab();
+  const { pathname } = useLocation();
 
   return (
     <SidebarGroup>
@@ -39,7 +41,9 @@ export function NavMain({
           <Collapsible
             key={item.title}
             asChild
-            defaultOpen={activeTab === item.title}
+            defaultOpen={
+              activeTab === item.title || pathname.startsWith(item.url)
+            }
             className="group/collapsible"
           >
             <SidebarMenuItem>
@@ -67,17 +71,24 @@ export function NavMain({
                         <SidebarMenuSubButton
                           asChild
                           onClick={() => setActiveSubTab(subItem.title)}
-                          className={`px-4 py-2 block cursor-pointer relative `}
+                          className="relative block cursor-pointer px-4 py-2"
                         >
-                          <a
-                            href={subItem.url}
-                            className="flex items-center space-x-2"
+                          <NavLink
+                            to={subItem.url}
+                            className={({ isActive }) =>
+                              `flex items-center space-x-2 rounded-md px-2 py-1 transition-colors ${
+                                isActive
+                                  ? 'bg-amber-100 text-amber-950'
+                                  : 'hover:bg-amber-50'
+                              }`
+                            }
                           >
-                            {activeSubTab === subItem.title && (
+                            {(activeSubTab === subItem.title ||
+                              pathname === subItem.url) && (
                               <span className="absolute left-0 top-1/2 transform -translate-y-1/2 w-2 h-2 border-2 border-amber-300 rounded-full" />
                             )}
                             <span>{subItem.title}</span>
-                          </a>
+                          </NavLink>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
