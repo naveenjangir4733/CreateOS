@@ -1,31 +1,41 @@
-import App from '@/App';
+import { createBrowserRouter } from 'react-router';
+
 import { HomePage } from '@/features/home';
 import { DashboardPage } from '@/features/dashboard';
 import { LoginPage } from '@/features/auth';
-import { createBrowserRouter } from 'react-router';
 import { NotFoundPage } from '@/features/notFound';
+
+import { Layout } from '@/components/layout/AppLayout';
+import { AuthLayout } from '@/components/layout/AuthLayout';
+
 const router = createBrowserRouter([
   {
-    path: '/',
-    Component: App,
+    element: <AuthLayout />,
     children: [
       {
         path: '/login',
-        Component: LoginPage,
-      },
-      {
-        index: true,
-        Component: HomePage,
-      },
-      {
-        path: 'dashboard',
-        Component: DashboardPage,
-      },
-      {
-        path: '*',
-        Component: NotFoundPage,
+        element: <LoginPage />,
       },
     ],
+  },
+
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />,
+      },
+      {
+        path: '/dashboard',
+        element: <DashboardPage />,
+      },
+    ],
+  },
+
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ]);
 
