@@ -5,7 +5,7 @@ import { DashboardPage } from '@/features/dashboard';
 import { LoginPage } from '@/features/auth';
 import { NotFoundPage } from '@/features/notFound';
 
-import { Layout } from '@/components/layout/AppLayout';
+import { AppLayout } from '@/components/layout/AppLayout';
 import { AuthLayout } from '@/components/layout/AuthLayout';
 
 const router = createBrowserRouter([
@@ -18,9 +18,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-
   {
-    element: <Layout />,
+    element: <AppLayout />,
     children: [
       {
         path: '/',
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
   {
     path: '*',
     element: <NotFoundPage />,
