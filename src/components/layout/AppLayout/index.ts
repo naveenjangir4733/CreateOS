@@ -1,4 +1,3 @@
 // components/layout/index.ts
-
 export { default as Layout } from './Layout';
-export { AppSidebar } from './AppSidebar';
+export { default as AppSidebar } from './AppSidebar';
