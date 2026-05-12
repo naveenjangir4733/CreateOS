@@ -8,7 +8,9 @@ export const AppProviders: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   return (
     <ActiveTabProvider>
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider>
+        <ActiveTabProvider>{children}</ActiveTabProvider>
+      </ThemeProvider>
     </ActiveTabProvider>
   );
 };

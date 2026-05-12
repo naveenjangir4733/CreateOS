@@ -8,7 +8,7 @@ export function NotFoundPage() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative flex h-full min-h-full items-center justify-center overflow-hidden px-4 py-8 md:px-6 lg:px-8">
+    <section className=" border-amber-950 h-screen relative flex  min-h-full items-center justify-center overflow-hidden px-4 py-8 md:px-6 lg:px-8">
       <div className="absolute inset-0">
         <div className="absolute left-[8%] top-16 h-40 w-40 rounded-full bg-amber-200/35 blur-3xl" />
         <div className="absolute bottom-10 right-[12%] h-56 w-56 rounded-full bg-orange-200/35 blur-3xl" />
